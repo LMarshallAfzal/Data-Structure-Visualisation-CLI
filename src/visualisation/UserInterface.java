@@ -3,6 +3,7 @@ package visualisation;
 import java.util.Scanner;
 import dataStructures.DataStructure;
 import dataStructures.LinkedList;
+import dataStructures.Stack;
 
 public class UserInterface {
     private final VisualisationEngine visualisationEngine;
@@ -20,7 +21,7 @@ public class UserInterface {
         System.out.println("Type 'help' for a list of available commands.");
 
         while (running) {
-            System.out.println("> ");
+            System.out.print("> ");
             String userInput = scanner.nextLine();
             processUserInput(userInput);
         }
@@ -79,7 +80,7 @@ public class UserInterface {
             case "1":
                 return new LinkedList();
             case "2":
-                return null;
+                return new Stack();
             case "3":
                 return null;
             case "4":
@@ -96,8 +97,9 @@ public class UserInterface {
         System.out.println(" - remove: Remove a node.");
         System.out.println(" - display: Display the current data structure.");
         System.out.println(" - back: Go back to choosing a data structure.");
+        System.out.println(" - exit: Exit the program");
 
-        while (true) {
+        while (running) {
             System.out.print("> ");
             String operation = scanner.nextLine().toLowerCase();
             switch (operation) {
@@ -107,11 +109,17 @@ public class UserInterface {
                 case "remove":
                     removeNode();
                     break;
+                case "traverse":
+                    visualisationEngine.traverseAndVisualize();
+                    break;
                 case "display":
                     visualisationEngine.displayVisualisation();
                     break;
                 case "back":
-                    return; // Go back to choosing a data structure
+                    return;
+                case "exit":
+                    exitProgram();
+                    break;
                 default:
                     System.out.println("Unknown operation. Type 'help' for assistance.");
             }

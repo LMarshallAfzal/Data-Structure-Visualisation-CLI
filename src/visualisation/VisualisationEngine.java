@@ -17,13 +17,6 @@ public class VisualisationEngine {
         return dataStructure;
     }
 
-    public void updateVisualisation() {
-        String visualRepresentation = dataStructure.getVisualRepresentation();
-
-        System.out.println("Visual Representation:");
-        System.out.println(visualRepresentation);
-    }
-
     public void displayVisualisation() {
         String visualRepresentation = dataStructure.getVisualRepresentation();
 
