@@ -48,12 +48,10 @@ public class UserInterface {
     }
 
     private void handleDataStructureCommand(String userInput) {
-        switch (userInput.toLowerCase()) {
-            case "choose":
-                chooseDataStructure();
-                break;
-            default:
-                System.out.println("Unknown command: Type 'help' for assistance.");
+        if (userInput.equalsIgnoreCase("choose")) {
+            chooseDataStructure();
+        } else {
+            System.out.println("Unknown command: Type 'help' for assistance.");
         }
     }
 
@@ -93,8 +91,15 @@ public class UserInterface {
 
     private void performDataStructureOperations() {
         System.out.println("Data Structure chosen. You can now perform operations:");
-        System.out.println(" - add: Add a node.");
-        System.out.println(" - remove: Remove a node.");
+
+        if (visualisationEngine.getDataStructure() instanceof LinkedList) {
+            System.out.println(" - add: Add a node.");
+            System.out.println(" - remove: Remove a node.");
+        } else if (visualisationEngine.getDataStructure() instanceof Stack) {
+            System.out.println(" - push: Push an element onto the stack");
+            System.out.println(" - pop: Pop an element from the stack");
+        }
+
         System.out.println(" - display: Display the current data structure.");
         System.out.println(" - back: Go back to choosing a data structure.");
         System.out.println(" - exit: Exit the program");
@@ -104,9 +109,11 @@ public class UserInterface {
             String operation = scanner.nextLine().toLowerCase();
             switch (operation) {
                 case "add":
+                case "push":
                     addNode();
                     break;
                 case "remove":
+                case "pop":
                     removeNode();
                     break;
                 case "traverse":
@@ -129,20 +136,23 @@ public class UserInterface {
     private void addNode() {
         System.out.print("Enter the value of the node to add: ");
         int value = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine();
 
         visualisationEngine.getDataStructure().addNode(value);
-        System.out.println("Node added.");
         visualisationEngine.displayVisualisation();
     }
 
     private void removeNode() {
-        System.out.print("Enter the value of the node to remove: ");
-        int value = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
+        if (!(visualisationEngine.getDataStructure() instanceof Stack)) {
+            System.out.print("Enter the value of the node to remove: ");
+            int value = scanner.nextInt();
+            scanner.nextLine();
 
-        visualisationEngine.getDataStructure().removeNode(value);
-        System.out.println("Node removed.");
+            visualisationEngine.getDataStructure().removeNode(value);
+        } else {
+            visualisationEngine.getDataStructure().removeNode(0);
+        }
+
         visualisationEngine.displayVisualisation();
     }
 
