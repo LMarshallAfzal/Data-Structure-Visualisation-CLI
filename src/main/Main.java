@@ -1,6 +1,7 @@
 package main;
 
 import dataStructures.LinkedList;
+import dataStructures.DataStructure;
 import visualisation.UserInterface;
 import visualisation.VisualisationEngine;
 public class Main {
