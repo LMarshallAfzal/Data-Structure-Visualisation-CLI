@@ -1,6 +1,8 @@
 package visualisation;
 
 import java.util.Scanner;
+
+import dataStructures.BinaryTree;
 import dataStructures.DataStructure;
 import dataStructures.LinkedList;
 import dataStructures.Stack;
@@ -33,7 +35,9 @@ public class UserInterface {
      */
     public void start() {
         System.out.println("Welcome to the Data Structure Visualiser!");
+        System.out.println(("Here you can view data structures and perform operations on them."));
         System.out.println("Type 'help' for a list of available commands.");
+        System.out.println("------------------------------------------------------------------");
 
         while (running) {
             System.out.print("> ");
@@ -77,6 +81,7 @@ public class UserInterface {
         System.out.println(" - help: Display this help message.");
         System.out.println(" - choose: Choose a data structure.");
         System.out.println(" - exit: Exit the program.");
+        System.out.println("------------------------------------------------------------------");
     }
 
     /**
@@ -94,6 +99,7 @@ public class UserInterface {
             chooseDataStructure();
         } else {
             System.out.println("Unknown command: Type 'help' for assistance.");
+            System.out.println("------------------------------------------------------------------");
         }
     }
 
@@ -107,12 +113,14 @@ public class UserInterface {
      * data structure.</p>
      */
     private void chooseDataStructure() {
+        System.out.println("------------------------------------------------------------------");
         System.out.println("Choose a data structure:");
         System.out.println("1. Linked List");
         System.out.println("2. Stack");
         System.out.println("3. Queue");
-        System.out.println("4. Hash Table");
+        System.out.println("4. Binary Tree");
         System.out.println("5. Tree");
+        System.out.println("------------------------------------------------------------------");
 
         System.out.print("Enter the number of your choice: ");
         String choice = scanner.nextLine();
@@ -143,7 +151,7 @@ public class UserInterface {
             case "3":
                 return null;
             case "4":
-                return null;
+                return new BinaryTree();
             default:
                 System.out.println("Invalid choice. Please try again.");
                 return null;
@@ -159,12 +167,13 @@ public class UserInterface {
      * structure, and exiting the program.</p>
      */
     private void performDataStructureOperations() {
+        System.out.println("------------------------------------------------------------------");
         System.out.println("Data Structure chosen. You can now perform operations:");
 
-        if (visualisationEngine.getDataStructure() instanceof LinkedList) {
+        if (!(visualisationEngine.getDataStructure() instanceof Stack)) {
             System.out.println(" - add: Add a node.");
             System.out.println(" - remove: Remove a node.");
-        } else if (visualisationEngine.getDataStructure() instanceof Stack) {
+        } else {
             System.out.println(" - push: Push an element onto the stack");
             System.out.println(" - pop: Pop an element from the stack");
         }
@@ -172,6 +181,7 @@ public class UserInterface {
         System.out.println(" - display: Display the current data structure.");
         System.out.println(" - back: Go back to choosing a data structure.");
         System.out.println(" - exit: Exit the program");
+        System.out.println("------------------------------------------------------------------");
 
         while (running) {
             System.out.print("> ");
