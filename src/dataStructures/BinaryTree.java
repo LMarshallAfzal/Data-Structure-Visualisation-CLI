@@ -143,7 +143,10 @@ public class BinaryTree extends DataStructure {
         StringBuilder visualRepresentation = new StringBuilder();
 
         if (node != null) {
-            visualRepresentation.append("  ".repeat(Math.max(0, depth)));
+            for (int i = 0; i < depth; i++) {
+                visualRepresentation.append("  ");
+            }
+
             visualRepresentation.append("[").append(node.value).append("]\n");
 
             visualRepresentation.append(visualRepresentationRecursive(node.left, depth + 1));

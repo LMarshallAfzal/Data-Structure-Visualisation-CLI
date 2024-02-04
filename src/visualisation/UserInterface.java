@@ -77,7 +77,7 @@ public class UserInterface {
      * and 'exit' to exit the program.</p>
      */
     private void displayHelp() {
-        System.out.println("Available Commands:");
+        System.out.println("\nAvailable Commands:");
         System.out.println(" - help: Display this help message.");
         System.out.println(" - choose: Choose a data structure.");
         System.out.println(" - exit: Exit the program.");
